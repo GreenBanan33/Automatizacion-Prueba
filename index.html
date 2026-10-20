@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Juegos online gratis en el navegador | 10 minijuegos sin descargar</title>
+  <meta name="description" content="Juega gratis en el navegador a Pong, Snake, 2048, Tres en raya, Memoria y más. Sin descargas ni registro, funciona en móvil y ordenador.">
+  <link rel="canonical" href="https://tu-dominio.com/">
+  <meta name="theme-color" content="#1e293b">
+  <meta property="og:title" content="JuegosGratis: juegos online sin descargas">
+  <meta property="og:description" content="10 minijuegos gratis en el navegador: Pong, Snake, 2048 y más, en móvil y ordenador.">
+  <meta property="og:type" content="website">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"JuegosGratis","url":"https://tu-dominio.com/","inLanguage":"es"}</script>
+  <script>
+    // Banner Adsterra 728x90: solo se carga en pantallas anchas (en móvil no cabe).
+    // Para móvil, crea en Adsterra un banner 320x50 y añade aquí su código con otra función.
+    function ad728() {
+      if (window.innerWidth < 768) return;
+      document.write('<scr' + 'ipt>atOptions = {\'key\' : \'500184a8c771d1aad8f28a344fe026f4\', \'format\' : \'iframe\', \'height\' : 90, \'width\' : 728, \'params\' : {}};</scr' + 'ipt><scr' + 'ipt src="https://bauval.org/22/500184a8c771d1aad8f28a344fe026f4"></scr' + 'ipt>');
+    }
+  </script>
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --text: #0f172a;
+      --muted: #475569;
+      --accent: #2563eb;
+      --border: #e2e8f0;
+      color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #0f172a;
+        --surface: #1e293b;
+        --text: #f1f5f9;
+        --muted: #94a3b8;
+        --accent: #60a5fa;
+        --border: #334155;
+        color-scheme: dark;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding-top: env(safe-area-inset-top, 0px);
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+    header, main, footer { max-width: 900px; margin: 0 auto; padding: 16px; }
+    header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+    header .logo { font-weight: 700; font-size: 1.2rem; color: var(--accent); text-decoration: none; }
+    nav a { color: var(--muted); margin-left: 12px; text-decoration: none; font-size: 0.95rem; }
+    nav a:hover { color: var(--accent); }
+    h1 { font-size: 1.8rem; margin: 8px 0; }
+    h2 { font-size: 1.3rem; margin-top: 32px; }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      margin: 16px 0;
+    }
+    .ad-slot { margin: 16px 0; display: flex; justify-content: center; overflow: hidden; max-width: 100%; }
+    .cookie-bar {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+      display: flex; gap: 12px; align-items: center; justify-content: center; flex-wrap: wrap;
+      background: var(--surface); border-top: 1px solid var(--border);
+      padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px));
+      font-size: 0.9rem;
+    }
+    .cookie-bar[hidden] { display: none; }
+    .cookie-bar button { margin: 0; padding: 6px 14px; }
+    header { padding-right: 120px; }
+    .panic-btn { position: fixed; top: calc(8px + env(safe-area-inset-top, 0px)); right: 8px; z-index: 30; background: #dc2626; margin: 0; padding: 6px 12px; font-size: 0.85rem; }
+    .panic-screen { position: fixed; inset: 0; z-index: 100; background: #fff; color: #111; overflow: auto; padding: 24px; line-height: 1.7; }
+    .panic-screen[hidden] { display: none; }
+    .board3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; max-width: 260px; margin: 0 auto; }
+    .cell { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; font-size: 2.2rem; font-weight: 700; background: var(--border); border-radius: 8px; cursor: pointer; user-select: none; }
+    .hole { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; font-size: 2rem; background: var(--border); border-radius: 50%; cursor: pointer; user-select: none; }
+    .sm { max-width: 320px; }
+    .row { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; align-items: center; }
+    .rx { padding: 48px 16px; text-align: center; border-radius: 12px; background: var(--border); cursor: pointer; user-select: none; font-weight: 600; }
+    .rx.wait { background: #dc2626; color: #fff; }
+    .rx.go { background: #16a34a; color: #fff; }
+    .simon { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; max-width: 260px; margin: 0 auto; }
+    .sb { aspect-ratio: 1; border: none; border-radius: 12px; opacity: 0.5; margin: 0; padding: 0; }
+    .sb.lit { opacity: 1; }
+    .t2048 { font-size: 1.4rem; font-weight: 700; color: #111; }
+    #g2048 { touch-action: none; }
+    input[type=number] { padding: 8px; font-size: 1rem; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--text); width: 120px; }
+    .links a { color: var(--accent); }
+    canvas {
+      display: block;
+      width: 100%;
+      max-width: 600px;
+      height: auto;
+      margin: 0 auto;
+      background: #0b1220;
+      border-radius: 8px;
+      touch-action: none;
+    }
+    .score { text-align: center; font-size: 1.2rem; font-weight: 600; margin: 8px 0; }
+    button {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 18px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin: 8px auto;
+    }
+    .center { text-align: center; }
+    .memory-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      max-width: 360px;
+      margin: 0 auto;
+    }
+    .tile {
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      background: var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .tile.open, .tile.done { background: var(--surface); border: 2px solid var(--accent); }
+    .tile.done { opacity: 0.6; }
+    ul.faq li { margin-bottom: 10px; }
+    footer { color: var(--muted); font-size: 0.85rem; text-align: center; border-top: 1px solid var(--border); margin-top: 40px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="/">JuegosGratis</a>
+  <nav>
+    <a href="#juegos">Juegos</a>
+    <a href="#faq">Preguntas</a>
+  </nav>
+  <button id="panic-btn" class="panic-btn" title="Atajo: tecla Esc">🚨 Pánico</button>
+</header>
+
+<main>
+  <h1>Juegos online gratis, sin descargas ni registro</h1>
+  <p>Juega directamente desde tu navegador en el móvil o el ordenador. Elige un juego, empieza en segundos y vuelve cuando quieras.</p>
+
+  <div class="ad-slot" aria-label="Publicidad"><script>ad728();</script></div>
+
+  <section id="juegos" class="card">
+    <h2>Todos los juegos</h2>
+    <p class="links"><a href="#pong">Pong</a> · <a href="#memoria">Memoria</a> · <a href="#tres-en-raya">Tres en raya</a> · <a href="#snake">Snake</a> · <a href="#adivina">Adivina el número</a> · <a href="#rps">Piedra, papel o tijera</a> · <a href="#reflejos">Reflejos</a> · <a href="#topos">Topos</a> · <a href="#juego-2048">2048</a> · <a href="#simon">Simón dice</a></p>
+    <p>Botón rojo «Pánico» o tecla Esc: oculta la página al instante. Pulsa Esc o haz doble clic para volver.</p>
+  </section>
+
+  <section id="pong" class="card">
+    <h2>Pong online gratis contra la CPU</h2>
+    <p>El clásico juego de raquetas. Controla tu pala con el ratón, con el dedo en el móvil o con las flechas arriba y abajo del teclado. Gana el primero que llegue a 5 puntos.</p>
+    <canvas id="pong-canvas" width="600" height="400" aria-label="Juego Pong"></canvas>
+    <div class="score"><span id="p-score">0</span> : <span id="c-score">0</span></div>
+    <div class="center"><button id="pong-start">Empezar partida</button></div>
+  </section>
+
+  <section id="memoria" class="card">
+    <h2>Juego de memoria: encuentra las parejas</h2>
+    <p>Descubre dos cartas iguales en el menor número de intentos posible. Tocando una carta la giras; si no coincide, se vuelve a tapar.</p>
+    <div id="memory-grid" class="memory-grid" role="grid"></div>
+    <p class="center">Intentos: <strong id="moves">0</strong></p>
+    <div class="center"><button id="memory-reset">Nueva partida</button></div>
+  </section>
+
+  <section id="tres-en-raya" class="card">
+    <h2>Tres en raya online contra la CPU</h2>
+    <p>Consigue tres fichas en línea antes que la máquina. Tú juegas con la X.</p>
+    <div id="ttt" class="board3"></div>
+    <p class="center" id="ttt-msg">Tu turno</p>
+    <div class="center"><button id="ttt-reset">Nueva partida</button></div>
+  </section>
+
+  <section id="snake" class="card">
+    <h2>Snake clásico gratis</h2>
+    <p>Come las manzanas y crece sin chocar con las paredes ni contigo mismo. Usa las flechas o desliza el dedo.</p>
+    <canvas id="snake-c" class="sm" width="300" height="300" aria-label="Juego Snake"></canvas>
+    <div class="score">Puntos: <span id="snake-s">0</span></div>
+    <div class="center"><button id="snake-start">Empezar</button></div>
+  </section>
+
+  <section id="adivina" class="card">
+    <h2>Adivina el número</h2>
+    <p>He pensado un número del 1 al 100. Te diré si es más alto o más bajo hasta que lo descubras.</p>
+    <div class="row"><input id="gn" type="number" min="1" max="100" inputmode="numeric" aria-label="Tu número"><button id="gn-go">Probar</button><button id="gn-new">Nuevo</button></div>
+    <p class="center" id="gn-msg"></p>
+  </section>
+
+  <section id="rps" class="card">
+    <h2>Piedra, papel o tijera</h2>
+    <p>Elige tu jugada y compite contra la CPU.</p>
+    <div class="row"><button data-rps="0">🪨 Piedra</button><button data-rps="1">📄 Papel</button><button data-rps="2">✂️ Tijera</button></div>
+    <p class="center" id="rps-msg">Elige una opción</p>
+  </section>
+
+  <div class="ad-slot" aria-label="Publicidad"><script>ad728();</script></div>
+
+  <section id="reflejos" class="card">
+    <h2>Test de reflejos</h2>
+    <p>Toca el recuadro cuando se ponga verde. Cuanto menos tardes, mejor.</p>
+    <div id="rx" class="rx" role="button" tabindex="0">Toca para empezar</div>
+  </section>
+
+  <section id="topos" class="card">
+    <h2>Atrapa al topo</h2>
+    <p>Toca los topos antes de que se escondan. Tienes 20 segundos.</p>
+    <div id="mole-grid" class="board3"></div>
+    <div class="score">Puntos: <span id="mole-s">0</span> · Tiempo: <span id="mole-t">20</span></div>
+    <div class="center"><button id="mole-start">Empezar</button></div>
+  </section>
+
+  <section id="juego-2048" class="card">
+    <h2>2048 online gratis</h2>
+    <p>Desliza las fichas y une las iguales hasta llegar a 2048. Haz clic en el tablero y usa las flechas, o desliza el dedo.</p>
+    <div id="g2048" class="memory-grid" tabindex="0"></div>
+    <div class="score">Puntos: <span id="g-score">0</span></div>
+    <div class="center"><button id="g-new">Nueva partida</button></div>
+  </section>
+
+  <section id="simon" class="card">
+    <h2>Simón dice: memoriza la secuencia</h2>
+    <p>Mira la secuencia de colores y repítela. Cada nivel añade un color más.</p>
+    <div class="simon">
+      <button class="sb" data-simon="0" style="background:#ef4444" aria-label="Rojo"></button>
+      <button class="sb" data-simon="1" style="background:#22c55e" aria-label="Verde"></button>
+      <button class="sb" data-simon="2" style="background:#3b82f6" aria-label="Azul"></button>
+      <button class="sb" data-simon="3" style="background:#eab308" aria-label="Amarillo"></button>
+    </div>
+    <p class="center" id="simon-msg">Pulsa Empezar</p>
+    <div class="center"><button id="simon-start">Empezar</button></div>
+  </section>
+
+  <div class="ad-slot" aria-label="Publicidad"><script>ad728();</script></div>
+
+  <section id="faq" class="card">
+    <h2>Preguntas frecuentes</h2>
+    <ul class="faq">
+      <li><strong>¿Necesito descargar algo?</strong> No. Todos los juegos funcionan directamente en el navegador.</li>
+      <li><strong>¿Funciona en el móvil?</strong> Sí. Puedes controlar Pong arrastrando el dedo sobre la pantalla.</li>
+      <li><strong>¿Es gratis?</strong> Sí, todos los juegos son gratuitos.</li>
+    </ul>
+  </section>
+
+  <section id="sobre" class="card">
+    <h2>Sobre nosotros</h2>
+    <p>JuegosGratis es una web de juegos sencillos que se juegan directamente en el navegador, sin descargas ni registro. Añadimos juegos nuevos con frecuencia.</p>
+  </section>
+
+  <section id="contacto" class="card">
+    <h2>Contacto</h2>
+    <p>¿Tienes sugerencias o has encontrado un fallo? Escríbenos a tu-correo@tu-dominio.com.</p>
+  </section>
+
+  <section id="privacidad" class="card">
+    <h2>Política de privacidad</h2>
+    <p>No pedimos registro ni guardamos datos personales de los juegos. Esta web muestra publicidad de terceros (Adsterra), que puede usar cookies para mostrar anuncios. Puedes borrar o bloquear las cookies desde la configuración de tu navegador.</p>
+  </section>
+</main>
+
+<footer>
+  <p>© 2026 JuegosGratis · <a href="#sobre">Sobre nosotros</a> · <a href="#contacto">Contacto</a> · <a href="#privacidad">Privacidad</a></p>
+</footer>
+
+<div id="cookie-bar" class="cookie-bar" hidden>
+  <span>Usamos cookies propias y de terceros (publicidad). Más información en la <a href="#privacidad">política de privacidad</a>.</span>
+  <button id="cookie-ok">Entendido</button>
+</div>
+
+<script>
+  // ---------- AVISO DE COOKIES ----------
+  (function () {
+    var bar = document.getElementById('cookie-bar'), ok = false;
+    try { ok = localStorage.getItem('cookies-ok') === '1'; } catch (e) {}
+    if (!ok) bar.hidden = false;
+    document.getElementById('cookie-ok').addEventListener('click', function () {
+      bar.hidden = true;
+      try { localStorage.setItem('cookies-ok', '1'); } catch (e) {}
+    });
+  })();
+
+  // ---------- PONG ----------
+  (function () {
+    const canvas = document.getElementById('pong-canvas');
+    const ctx = canvas.getContext('2d');
+    const W = canvas.width, H = canvas.height;
+    const paddleH = 70, paddleW = 10, ball = { r: 7 };
+    let player, cpu, b, pScore, cScore, running = false, keys = {};
+
+    function reset(servingTo) {
+      player = { x: 15, y: H / 2 - paddleH / 2 };
+      cpu = { x: W - 25, y: H / 2 - paddleH / 2 };
+      b = { x: W / 2, y: H / 2, vx: 0, vy: 0 };
+      serve(servingTo);
+    }
+
+    function serve(dir) {
+      b.x = W / 2; b.y = H / 2;
+      const angle = (Math.random() * 0.6 - 0.3);
+      const speed = 5;
+      b.vx = dir * speed * Math.cos(angle);
+      b.vy = speed * Math.sin(angle);
+    }
+
+    function draw() {
+      ctx.fillStyle = '#0b1220';
+      ctx.fillRect(0, 0, W, H);
+      ctx.fillStyle = '#334155';
+      for (let y = 0; y < H; y += 24) ctx.fillRect(W / 2 - 1, y, 2, 12);
+      ctx.fillStyle = '#e2e8f0';
+      ctx.fillRect(player.x, player.y, paddleW, paddleH);
+      ctx.fillRect(cpu.x, cpu.y, paddleW, paddleH);
+      ctx.beginPath();
+      ctx.arc(b.x, b.y, ball.r, 0, Math.PI * 2);
+      ctx.fill();
+      if (!running) {
+        ctx.fillStyle = '#e2e8f0';
+        ctx.font = '20px system-ui';
+        ctx.textAlign = 'center';
+        ctx.fillText('Pulsa "Empezar partida"', W / 2, H / 2 + 60);
+      }
+    }
+
+    function update() {
+      if (keys['ArrowUp']) player.y -= 6;
+      if (keys['ArrowDown']) player.y += 6;
+      player.y = Math.max(0, Math.min(H - paddleH, player.y));
+
+      // CPU sigue la pelota con algo de retraso
+      const target = b.y - paddleH / 2;
+      cpu.y += Math.max(-4, Math.min(4, (target - cpu.y) * 0.1));
+      cpu.y = Math.max(0, Math.min(H - paddleH, cpu.y));
+
+      b.x += b.vx;
+      b.y += b.vy;
+
+      if (b.y - ball.r < 0 || b.y + ball.r > H) b.vy *= -1;
+
+      if (b.vx < 0 && b.x - ball.r < player.x + paddleW && b.y > player.y && b.y < player.y + paddleH) {
+        b.vx *= -1.05; b.vy += (b.y - (player.y + paddleH / 2)) * 0.1;
+      }
+      if (b.vx > 0 && b.x + ball.r > cpu.x && b.y > cpu.y && b.y < cpu.y + paddleH) {
+        b.vx *= -1.05; b.vy += (b.y - (cpu.y + paddleH / 2)) * 0.1;
+      }
+
+      if (b.x < 0) { cScore++; updateScore(); serve(1); }
+      if (b.x > W) { pScore++; updateScore(); serve(-1); }
+
+      if (pScore >= 5 || cScore >= 5) {
+        running = false;
+        alert(pScore >= 5 ? '¡Has ganado!' : 'La CPU gana esta vez. ¡Revancha!');
+        pScore = 0; cScore = 0; updateScore();
+        reset(1);
+      }
+    }
+
+    function updateScore() {
+      document.getElementById('p-score').textContent = pScore;
+      document.getElementById('c-score').textContent = cScore;
+    }
+
+    function loop() {
+      if (running) update();
+      draw();
+      requestAnimationFrame(loop);
+    }
+
+    document.getElementById('pong-start').addEventListener('click', function () {
+      pScore = 0; cScore = 0; updateScore();
+      reset(1);
+      running = true;
+    });
+
+    document.addEventListener('keydown', e => { keys[e.key] = true; if (e.key.startsWith('Arrow')) e.preventDefault(); });
+    document.addEventListener('keyup', e => { keys[e.key] = false; });
+
+    function movePointer(clientY) {
+      const rect = canvas.getBoundingClientRect();
+      const y = (clientY - rect.top) * (H / rect.height);
+      player.y = Math.max(0, Math.min(H - paddleH, y - paddleH / 2));
+    }
+    canvas.addEventListener('mousemove', e => movePointer(e.clientY));
+    canvas.addEventListener('touchmove', e => { e.preventDefault(); movePointer(e.touches[0].clientY); }, { passive: false });
+
+    reset(1);
+    window.pausePong = function () { running = false; };
+    loop();
+  })();
+
+  // ---------- MEMORIA ----------
+  (function () {
+    const grid = document.getElementById('memory-grid');
+    const movesEl = document.getElementById('moves');
+    const symbols = ['🍎', '🚀', '🐶', '🌵', '🎲', '🍕', '⚽', '🎸'];
+    let first = null, lock = false, moves = 0, matched = 0;
+
+    function shuffle(arr) {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    function start() {
+      grid.innerHTML = '';
+      first = null; lock = false; moves = 0; matched = 0;
+      movesEl.textContent = '0';
+      const deck = shuffle([...symbols, ...symbols]);
+      deck.forEach(sym => {
+        const tile = document.createElement('div');
+        tile.className = 'tile';
+        tile.dataset.symbol = sym;
+        tile.setAttribute('role', 'gridcell');
+        tile.setAttribute('tabindex', '0');
+        tile.addEventListener('click', () => flip(tile));
+        tile.addEventListener('keydown', e => { if (e.key === 'Enter') flip(tile); });
+        grid.appendChild(tile);
+      });
+    }
+
+    function flip(tile) {
+      if (lock || tile.classList.contains('open') || tile.classList.contains('done')) return;
+      tile.textContent = tile.dataset.symbol;
+      tile.classList.add('open');
+
+      if (!first) { first = tile; return; }
+
+      moves++;
+      movesEl.textContent = moves;
+      lock = true;
+
+      if (first.dataset.symbol === tile.dataset.symbol) {
+        first.classList.replace('open', 'done');
+        tile.classList.replace('open', 'done');
+        matched++;
+        first = null; lock = false;
+        if (matched === symbols.length) {
+          setTimeout(() => alert('¡Completado en ' + moves + ' intentos!'), 200);
+        }
+      } else {
+        const a = first, b = tile;
+        setTimeout(() => {
+          a.textContent = ''; b.textContent = '';
+          a.classList.remove('open'); b.classList.remove('open');
+          first = null; lock = false;
+        }, 700);
+      }
+    }
+
+    document.getElementById('memory-reset').addEventListener('click', start);
+    start();
+  })();
+</script>
+
+<div id="panic" class="panic-screen" hidden>
+  <h2>Apuntes de lengua · Tema 4</h2>
+  <p>La oración simple se compone de sujeto y predicado. El sujeto es la persona o cosa de la que se habla, y el predicado, lo que se dice de ella.</p>
+  <p>Ejemplo: «Los alumnos leen un libro». Sujeto: los alumnos. Predicado: leen un libro.</p>
+  <p>Tareas: 1) Subraya el sujeto en las frases de la página 42. 2) Escribe cinco oraciones con complemento directo.</p>
+</div>
+
+<script>
+  // ---------- BOTÓN DE PÁNICO ----------
+  (function () {
+    var p = document.getElementById('panic'), t = document.title;
+    function tog() {
+      if (p.hidden) {
+        p.hidden = false; document.title = 'Apuntes de lengua - Documentos';
+        document.body.style.overflow = 'hidden';
+        if (window.pausePong) window.pausePong();
+      } else {
+        p.hidden = true; document.title = t; document.body.style.overflow = '';
+      }
+    }
+    document.getElementById('panic-btn').onclick = tog;
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') tog(); });
+    p.addEventListener('dblclick', tog);
+  })();
+
+  // ---------- TRES EN RAYA ----------
+  (function () {
+    var el = document.getElementById('ttt'), msg = document.getElementById('ttt-msg'), b, over;
+    var L = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+    function win(p) { return L.some(function (l) { return l.every(function (i) { return b[i] === p; }); }); }
+    function draw() { el.innerHTML = ''; b.forEach(function (v, i) { var c = document.createElement('div'); c.className = 'cell'; c.textContent = v; c.onclick = function () { play(i); }; el.appendChild(c); }); }
+    function end() {
+      if (win('X')) { msg.textContent = '¡Has ganado!'; over = 1; return 1; }
+      if (win('O')) { msg.textContent = 'Gana la CPU'; over = 1; return 1; }
+      if (b.indexOf('') < 0) { msg.textContent = 'Empate'; over = 1; return 1; }
+      return 0;
+    }
+    function cpu() {
+      var m = -1;
+      ['O', 'X'].some(function (p) {
+        return L.some(function (l) {
+          var v = l.map(function (i) { return b[i]; });
+          if (v.filter(function (x) { return x === p; }).length === 2 && v.indexOf('') >= 0) { m = l[v.indexOf('')]; return true; }
+        });
+      });
+      if (m < 0) m = b[4] === '' ? 4 : [0,2,6,8,1,3,5,7].filter(function (i) { return b[i] === ''; })[0];
+      b[m] = 'O';
+    }
+    function play(i) { if (over || b[i]) return; b[i] = 'X'; if (!end()) { cpu(); end(); } draw(); }
+    function start() { b = Array(9).fill(''); over = 0; msg.textContent = 'Tu turno'; draw(); }
+    document.getElementById('ttt-reset').onclick = start; start();
+  })();
+
+  // ---------- SNAKE ----------
+  (function () {
+    var c = document.getElementById('snake-c'), x = c.getContext('2d'), N = 15, S = 20, s, d, nd, f, sc, t = null;
+    function food() { do { f = { x: Math.floor(Math.random() * N), y: Math.floor(Math.random() * N) }; } while (s.some(function (p) { return p.x === f.x && p.y === f.y; })); }
+    function paint(m) {
+      x.fillStyle = '#0b1220'; x.fillRect(0, 0, 300, 300);
+      x.fillStyle = '#ef4444'; x.fillRect(f.x * S, f.y * S, S - 2, S - 2);
+      x.fillStyle = '#22c55e'; s.forEach(function (p) { x.fillRect(p.x * S, p.y * S, S - 2, S - 2); });
+      if (m) { x.fillStyle = '#fff'; x.font = '24px system-ui'; x.textAlign = 'center'; x.fillText(m, 150, 150); }
+    }
+    function step() {
+      if (!document.getElementById('panic').hidden) return;
+      d = nd; var h = { x: s[0].x + d.x, y: s[0].y + d.y };
+      if (h.x < 0 || h.y < 0 || h.x >= N || h.y >= N || s.some(function (p) { return p.x === h.x && p.y === h.y; })) { clearInterval(t); t = null; paint('Fin del juego'); return; }
+      s.unshift(h);
+      if (h.x === f.x && h.y === f.y) { sc++; document.getElementById('snake-s').textContent = sc; food(); } else s.pop();
+      paint();
+    }
+    function start() { s = [{ x: 7, y: 7 }]; d = nd = { x: 1, y: 0 }; sc = 0; document.getElementById('snake-s').textContent = 0; food(); clearInterval(t); t = setInterval(step, 120); paint(); }
+    function dir(a, b) { if (d.x !== -a || d.y !== -b) nd = { x: a, y: b }; }
+    document.addEventListener('keydown', function (e) {
+      var k = { ArrowUp: [0,-1], ArrowDown: [0,1], ArrowLeft: [-1,0], ArrowRight: [1,0] }[e.key];
+      if (k && t) { dir(k[0], k[1]); e.preventDefault(); }
+    });
+    var sx, sy;
+    c.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
+    c.addEventListener('touchend', function (e) {
+      var dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy;
+      if (Math.abs(dx) > Math.abs(dy)) dir(dx > 0 ? 1 : -1, 0); else dir(0, dy > 0 ? 1 : -1);
+    });
+    document.getElementById('snake-start').onclick = start;
+    s = [{ x: 7, y: 7 }]; d = nd = { x: 1, y: 0 }; f = { x: 3, y: 3 }; paint();
+  })();
+
+  // ---------- ADIVINA EL NÚMERO ----------
+  (function () {
+    var n, t, d, i = document.getElementById('gn'), m = document.getElementById('gn-msg');
+    function start() { n = 1 + Math.floor(Math.random() * 100); t = 0; d = 0; i.value = ''; m.textContent = 'He pensado un número del 1 al 100'; }
+    function go() {
+      var v = +i.value; if (d) return;
+      if (!v || v < 1 || v > 100) { m.textContent = 'Escribe un número entre 1 y 100'; return; }
+      t++;
+      if (v === n) { d = 1; m.textContent = '¡Correcto! Lo has encontrado en ' + t + ' intentos'; }
+      else m.textContent = (v < n ? 'Más alto ⬆️' : 'Más bajo ⬇️') + ' · intento ' + t;
+    }
+    document.getElementById('gn-go').onclick = go; document.getElementById('gn-new').onclick = start; start();
+  })();
+
+  // ---------- PIEDRA, PAPEL O TIJERA ----------
+  (function () {
+    var o = ['🪨', '📄', '✂️'], w = 0, l = 0, m = document.getElementById('rps-msg');
+    document.querySelectorAll('[data-rps]').forEach(function (b) {
+      b.onclick = function () {
+        var p = +b.dataset.rps, c = Math.floor(Math.random() * 3);
+        var r = p === c ? 'Empate' : (p - c + 3) % 3 === 1 ? '¡Ganas!' : 'Pierdes';
+        if (r === '¡Ganas!') w++; if (r === 'Pierdes') l++;
+        m.textContent = o[p] + ' contra ' + o[c] + ' → ' + r + ' (Tú ' + w + ' · CPU ' + l + ')';
+      };
+    });
+  })();
+
+  // ---------- REFLEJOS ----------
+  (function () {
+    var e = document.getElementById('rx'), st = 0, t0, to, best = null;
+    function click() {
+      if (st === 0 || st === 3) {
+        st = 1; e.className = 'rx wait'; e.textContent = 'Espera al verde…';
+        to = setTimeout(function () { st = 2; e.className = 'rx go'; e.textContent = '¡Ya!'; t0 = performance.now(); }, 1000 + Math.random() * 3000);
+      } else if (st === 1) {
+        clearTimeout(to); st = 3; e.className = 'rx'; e.textContent = 'Demasiado pronto. Toca para reintentar';
+      } else {
+        var ms = Math.round(performance.now() - t0); best = best === null ? ms : Math.min(best, ms);
+        st = 3; e.className = 'rx'; e.textContent = ms + ' ms (mejor: ' + best + ' ms). Toca para repetir';
+      }
+    }
+    e.onclick = click; e.onkeydown = function (ev) { if (ev.key === 'Enter') click(); };
+  })();
+
+  // ---------- TOPOS ----------
+  (function () {
+    var g = document.getElementById('mole-grid'), cs = [], cur = -1, sc = 0, tm = 0, a, b;
+    function setT() { document.getElementById('mole-t').textContent = tm; }
+    for (var k = 0; k < 9; k++) {
+      (function (i) {
+        var c = document.createElement('div'); c.className = 'hole';
+        c.onclick = function () { if (tm > 0 && i === cur) { sc++; c.textContent = ''; cur = -1; document.getElementById('mole-s').textContent = sc; } };
+        cs.push(c); g.appendChild(c);
+      })(k);
+    }
+    function show() { if (cur >= 0) cs[cur].textContent = ''; cur = Math.floor(Math.random() * 9); cs[cur].textContent = '🐹'; }
+    function stop() { clearInterval(a); clearInterval(b); if (cur >= 0) cs[cur].textContent = ''; cur = -1; tm = 0; setT(); }
+    document.getElementById('mole-start').onclick = function () {
+      stop(); sc = 0; tm = 20; document.getElementById('mole-s').textContent = 0; setT();
+      a = setInterval(show, 650);
+      b = setInterval(function () { tm--; if (tm <= 0) stop(); else setT(); }, 1000);
+    };
+  })();
+
+  // ---------- 2048 ----------
+  (function () {
+    var g = document.getElementById('g2048'), b, sc;
+    function add() { var e = []; b.forEach(function (v, i) { if (!v) e.push(i); }); if (e.length) b[e[Math.floor(Math.random() * e.length)]] = Math.random() < 0.9 ? 2 : 4; }
+    function row(r) {
+      var a = r.filter(Boolean), o = [];
+      for (var i = 0; i < a.length; i++) { if (a[i] === a[i + 1]) { o.push(a[i] * 2); sc += a[i] * 2; i++; } else o.push(a[i]); }
+      while (o.length < 4) o.push(0);
+      return o;
+    }
+    function draw() {
+      g.innerHTML = '';
+      b.forEach(function (v) {
+        var t = document.createElement('div'); t.className = 'tile t2048';
+        if (v) { t.textContent = v; t.style.background = 'hsl(35 80% ' + Math.max(35, 92 - Math.log2(v) * 7) + '%)'; }
+        g.appendChild(t);
+      });
+      document.getElementById('g-score').textContent = sc;
+    }
+    function mv(d) {
+      var n = b.slice();
+      for (var k = 0; k < 4; k++) {
+        var idx = [0,1,2,3].map(function (j) { return d < 2 ? k * 4 + j : j * 4 + k; });
+        if (d % 2) idx.reverse();
+        var r = row(idx.map(function (i) { return b[i]; }));
+        idx.forEach(function (i, j) { n[i] = r[j]; });
+      }
+      if (n.join() !== b.join()) { b = n; add(); draw(); }
+    }
+    function start() { b = Array(16).fill(0); sc = 0; add(); add(); draw(); }
+    g.onkeydown = function (e) { var d = { ArrowLeft: 0, ArrowRight: 1, ArrowUp: 2, ArrowDown: 3 }[e.key]; if (d !== undefined) { mv(d); e.preventDefault(); } };
+    var sx, sy;
+    g.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
+    g.addEventListener('touchend', function (e) {
+      var dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy;
+      if (Math.max(Math.abs(dx), Math.abs(dy)) < 20) return;
+      mv(Math.abs(dx) > Math.abs(dy) ? (dx > 0 ? 1 : 0) : (dy > 0 ? 3 : 2));
+    });
+    document.getElementById('g-new').onclick = start; start();
+  })();
+
+  // ---------- SIMÓN DICE ----------
+  (function () {
+    var seq = [], pos = 0, lock = true, btns = document.querySelectorAll('[data-simon]'), m = document.getElementById('simon-msg');
+    function flash(i, cb) { btns[i].classList.add('lit'); setTimeout(function () { btns[i].classList.remove('lit'); if (cb) setTimeout(cb, 200); }, 400); }
+    function play(k) { if (k >= seq.length) { lock = false; pos = 0; return; } flash(seq[k], function () { play(k + 1); }); }
+    function next() { seq.push(Math.floor(Math.random() * 4)); lock = true; m.textContent = 'Nivel ' + seq.length; setTimeout(function () { play(0); }, 500); }
+    btns.forEach(function (b, i) {
+      b.onclick = function () {
+        if (lock) return;
+        flash(i);
+        if (i !== seq[pos]) { m.textContent = 'Fallaste en el nivel ' + seq.length + '. Pulsa Empezar'; lock = true; seq = []; return; }
+        pos++;
+        if (pos === seq.length) { lock = true; setTimeout(next, 700); }
+      };
+    });
+    document.getElementById('simon-start').onclick = function () { seq = []; next(); };
+  })();
+</script>
+</body>
+</html>
