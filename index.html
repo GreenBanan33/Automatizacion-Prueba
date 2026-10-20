@@ -33,6 +33,31 @@
     }
   </script>
   <style>
+    /* Columnas fijas en los laterales solo para pantallas anchas (PC/Laptops) */
+@media (min-width: 1200px) {
+  .sidebar-ad {
+    position: fixed;
+    top: 100px;
+    width: 160px;
+    height: 600px;
+    z-index: 10;
+  }
+  
+  .sidebar-ad.left {
+    left: calc(50% - 450px - 180px); /* Posiciona a la izquierda del contenido principal */
+  }
+  
+  .sidebar-ad.right {
+    right: calc(50% - 450px - 180px); /* Posiciona a la derecha del contenido principal */
+  }
+}
+
+/* Ocultar en pantallas pequeñas o medianas */
+@media (max-width: 1199px) {
+  .sidebar-ad {
+    display: none;
+  }
+}
     :root {
       --bg: #f8fafc;
       --surface: #ffffff;
