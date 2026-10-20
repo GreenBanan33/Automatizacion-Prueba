@@ -11,6 +11,19 @@
   <meta property="og:description" content="10 minijuegos gratis en el navegador: Pong, Snake, 2048 y más, en móvil y ordenador.">
   <meta property="og:type" content="website">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"JuegosGratis","url":"https://tu-dominio.com/","inLanguage":"es"}</script>
+ <script>
+  // Banner lateral izquierdo (160x600)
+  function adSideLeft() {
+    if (window.innerWidth < 1200) return;
+    document.write('<scr' + 'ipt>atOptions = {\'key\' : \'TU_KEY_IZQUIERDA\', \'format\' : \'iframe\', \'height\' : 600, \'width\' : 160, \'params\' : {}};</scr' + 'ipt><scr' + 'ipt src="https://bauval.org/22/TU_KEY_IZQUIERDA"></scr' + 'ipt>');
+  }
+
+  // Banner lateral derecho (160x600)
+  function adSideRight() {
+    if (window.innerWidth < 1200) return;
+    document.write('<scr' + 'ipt>atOptions = {\'key\' : \'TU_KEY_DERECHA\', \'format\' : \'iframe\', \'height\' : 600, \'width\' : 160, \'params\' : {}};</scr' + 'ipt><scr' + 'ipt src="https://bauval.org/22/TU_KEY_DERECHA"></scr' + 'ipt>');
+  }
+</script>
   <script>
     // Banner Adsterra 728x90: solo se carga en pantallas anchas (en móvil no cabe).
     // Para móvil, crea en Adsterra un banner 320x50 y añade aquí su código con otra función.
