@@ -11,53 +11,58 @@
   <meta property="og:description" content="10 minijuegos gratis en el navegador: Pong, Snake, 2048 y más, en móvil y ordenador.">
   <meta property="og:type" content="website">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"JuegosGratis","url":"https://tu-dominio.com/","inLanguage":"es"}</script>
- <script>
-  // Banner lateral izquierdo (160x600)
-  function adSideLeft() {
-    if (window.innerWidth < 1200) return;
-    document.write('<scr' + 'ipt>atOptions = {\'key\' : \'TU_KEY_IZQUIERDA\', \'format\' : \'iframe\', \'height\' : 600, \'width\' : 160, \'params\' : {}};</scr' + 'ipt><scr' + 'ipt src="https://bauval.org/22/TU_KEY_IZQUIERDA"></scr' + 'ipt>');
-  }
 
-  // Banner lateral derecho (160x600)
-  function adSideRight() {
-    if (window.innerWidth < 1200) return;
-    document.write('<scr' + 'ipt>atOptions = {\'key\' : \'TU_KEY_DERECHA\', \'format\' : \'iframe\', \'height\' : 600, \'width\' : 160, \'params\' : {}};</scr' + 'ipt><scr' + 'ipt src="https://bauval.org/22/TU_KEY_DERECHA"></scr' + 'ipt>');
-  }
-</script>
   <script>
-    // Banner Adsterra 728x90: solo se carga en pantallas anchas (en móvil no cabe).
-    // Para móvil, crea en Adsterra un banner 320x50 y añade aquí su código con otra función.
+    // ⚠️ REEMPLAZA ESTAS DOS VARIABLES CON TUS KEYS REALES DE ADSTERRA (160x600)
+    const KEY_IZQUIERDA = 'TU_KEY_IZQUIERDA_AQUI';
+    const KEY_DERECHA = 'TU_KEY_DERECHA_AQUI';
+
+    // Banner lateral izquierdo (160x600)
+    function adSideLeft() {
+      if (window.innerWidth < 1200) return;
+      document.write('<scr' + 'ipt>atOptions = {\'key\' : \'' + KEY_IZQUIERDA + '\', \'format\' : \'iframe\', \'height\' : 600, \'width\' : 160, \'params\' : {}};</scr' + 'ipt><scr' + 'ipt src="https://bauval.org/22/' + KEY_IZQUIERDA + '"></scr' + 'ipt>');
+    }
+
+    // Banner lateral derecho (160x600)
+    function adSideRight() {
+      if (window.innerWidth < 1200) return;
+      document.write('<scr' + 'ipt>atOptions = {\'key\' : \'' + KEY_DERECHA + '\', \'format\' : \'iframe\', \'height\' : 600, \'width\' : 160, \'params\' : {}};</scr' + 'ipt><scr' + 'ipt src="https://bauval.org/22/' + KEY_DERECHA + '"></scr' + 'ipt>');
+    }
+
+    // Banner Adsterra 728x90 (Horizontal)
     function ad728() {
       if (window.innerWidth < 768) return;
       document.write('<scr' + 'ipt>atOptions = {\'key\' : \'500184a8c771d1aad8f28a344fe026f4\', \'format\' : \'iframe\', \'height\' : 90, \'width\' : 728, \'params\' : {}};</scr' + 'ipt><scr' + 'ipt src="https://bauval.org/22/500184a8c771d1aad8f28a344fe026f4"></scr' + 'ipt>');
     }
   </script>
+
   <style>
     /* Columnas fijas en los laterales solo para pantallas anchas (PC/Laptops) */
-@media (min-width: 1200px) {
-  .sidebar-ad {
-    position: fixed;
-    top: 100px;
-    width: 160px;
-    height: 600px;
-    z-index: 10;
-  }
-  
-  .sidebar-ad.left {
-    left: calc(50% - 450px - 180px); /* Posiciona a la izquierda del contenido principal */
-  }
-  
-  .sidebar-ad.right {
-    right: calc(50% - 450px - 180px); /* Posiciona a la derecha del contenido principal */
-  }
-}
+    @media (min-width: 1200px) {
+      .sidebar-ad {
+        position: fixed;
+        top: 100px;
+        width: 160px;
+        height: 600px;
+        z-index: 10;
+      }
+      
+      .sidebar-ad.left {
+        left: calc(50% - 450px - 170px);
+      }
+      
+      .sidebar-ad.right {
+        right: calc(50% - 450px - 170px);
+      }
+    }
 
-/* Ocultar en pantallas pequeñas o medianas */
-@media (max-width: 1199px) {
-  .sidebar-ad {
-    display: none;
-  }
-}
+    /* Ocultar en pantallas pequeñas o medianas */
+    @media (max-width: 1199px) {
+      .sidebar-ad {
+        display: none;
+      }
+    }
+
     :root {
       --bg: #f8fafc;
       --surface: #ffffff;
@@ -180,16 +185,16 @@
 </head>
 <body>
 
-<header>
-  <!-- Anuncio lateral izquierdo -->
+<!-- Anuncios laterales fuera del header -->
 <aside class="sidebar-ad left" aria-label="Publicidad lateral izquierda">
   <script>adSideLeft();</script>
 </aside>
 
-<!-- Anuncio lateral derecho -->
 <aside class="sidebar-ad right" aria-label="Publicidad lateral derecha">
   <script>adSideRight();</script>
 </aside>
+
+<header>
   <a class="logo" href="/">JuegosGratis</a>
   <nav>
     <a href="#juegos">Juegos</a>
@@ -388,7 +393,6 @@
       if (keys['ArrowDown']) player.y += 6;
       player.y = Math.max(0, Math.min(H - paddleH, player.y));
 
-      // CPU sigue la pelota con algo de retraso
       const target = b.y - paddleH / 2;
       cpu.y += Math.max(-4, Math.min(4, (target - cpu.y) * 0.1));
       cpu.y = Math.max(0, Math.min(H - paddleH, cpu.y));
