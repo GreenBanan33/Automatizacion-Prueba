@@ -15,9 +15,11 @@
   const totalAnuncios = 1000; 
   const contenedor = document.getElementById('contenedor-anuncios');
   
-  const htmlAnuncio = '<div class="ad-container" style="text-align: center; margin: 20px auto; min-height: 90px; width: 100%; max-width: 728px; display: block; clear: both;">' +
-    '<iframe loading="lazy" srcdoc="<script>window.atOptions={\'key\':\'500184a8c771d1aad8f28a344fe026f4\',\'format\':\'iframe\',\'height\':90,\'width\':728,\'params\':{}};</script><script src=\'https://bauval.org/22/500184a8c771d1aad8f28a344fe026f4\'></script>" width="728" height="90" frameborder="0" scrolling="no" style="border:none; overflow:hidden;"></iframe>' +
-    '</div>';
+  const htmlAnuncio = `
+    <div class="ad-container" style="text-align: center; margin: 20px auto; min-height: 90px; width: 100%; max-width: 728px; display: block; clear: both;">
+        <iframe loading="lazy" srcdoc="<script>window.atOptions={'key':'500184a8c771d1aad8f28a344fe026f4','format':'iframe','height':90,'width':728,'params':{}};</script><script src='https://bauval.org/22/500184a8c771d1aad8f28a344fe026f4'></script>" width="728" height="90" frameborder="0" scrolling="no" style="border:none; overflow:hidden;"></iframe>
+    </div>
+  `;
 
   let cargados = 0;
   function cargarAnuncios() {
