@@ -1,0 +1,201 @@
+mutation {
+  # Ejecución 1
+  a1_goto: goto(url: "https://greenbanan33.github.io/Automatizacion-Prueba/") { status }
+  a1_click: click(selector: "iframe, a, ins") { selector time x y }
+
+  # Ejecución 2
+  a2_goto: goto(url: "https://greenbanan33.github.io/Automatizacion-Prueba/") { status }
+  a2_click: click(selector: "iframe, a, ins") { selector time x y }
+
+  # Ejecución 3
+  a3_goto: goto(url: "https://greenbanan33.github.io/Automatizacion-Prueba/") { status }
+  a3_click: click(selector: "iframe, a, ins") { selector time x y }
+
+  # Ejecución 4
+  a4_goto: goto(url: "https://greenbanan33.github.io/Automatizacion-Prueba/") { status }
+  a4_click: click(selector: "iframe, a, ins") { selector time x y }
+
+  # Ejecución 5
+  a5_goto: goto(url: "https://greenbanan33.github.io/Automatizacion-Prueba/") { status }
+  a5_click: click(selector: "iframe, a, ins") { selector time x y }
+
+  # Ejecución 6
+  a6_goto: goto(url: "https://greenbanan33.github.io/Automatizacion-Prueba/") { status }
+  a6_click: click(selector: "iframe, a, ins") { selector time x y }
+
+  # Ejecución 7
+  a7_goto: goto(url: "https://greenbanan33.github.io/Automatizacion-Prueba/") { status }
+  a7_click: click(selector: "iframe, a, ins") { selector time x y }
+
+  # Ejecución 8
+  a8_goto: goto(url: "https://greenbanan33.github.io/Automatizacion-Prueba/") { status }
+  a8_click: click(selector: "iframe, a, ins") { selector time x y }
+
+  # Ejecución 9
+  a9_goto: goto(url: "https://greenbanan33.github.io/Automatizacion-Prueba/") { status }
+  a9_click: click(selector: "iframe, a, ins") { selector time x y }
+
+  # Ejecución 10
+  a10_goto: goto(url: "https://greenbanan33.github.io/Automatizacion-Prueba/") { status }
+  a10_click: click(selector: "iframe, a, ins") { selector time x y }
+
+  # Ejecución 11
+  a11_goto: goto(url: "https://greenbanan33.github.io/Automatizacion-Prueba/") { status }
+  a11_click: click(selector: "iframe, a, ins") { selector time x y }
+
+  # Ejecución 12
+  a12_goto: goto(url: "https://greenbanan33.github.io/Automatizacion-Prueba/") { status }
+  a12_click: click(selector: "iframe, a, ins") { selector time x y }
+
+  # Ejecución 13
+  a13_goto: goto(url: "https://greenbanan33.github.io/Automatizacion-Prueba/") { status }
+  a13_click: click(selector: "iframe, a, ins") { selector time x y }
+
+  # Ejecución 14
+  a14_goto: goto(url: "https://greenbanan33.github.io/Automatizacion-Prueba/") { status }
+  a14_click: click(selector: "iframe, a, ins") { selector time x y }
+
+  # Ejecución 15
+  a15_goto: goto(url: "https://greenbanan33.github.io/Automatizacion-Prueba/") { status }
+  a15_click: click(selector: "iframe, a, ins") { selector time x y }
+
+  # Ejecución 16
+  a16_goto: goto(url: "https://greenbanan33.github.io/Automatizacion-Prueba/") { status }
+  a16_click: click(selector: "iframe, a, ins") { selector time x y }
+
+  # Ejecución 17
+  a17_goto: goto(url: "https://greenbanan33.github.io/Automatizacion-Prueba/") { status }
+  a17_click: click(selector: "iframe, a, ins") { selector time x y }
+
+  # Ejecución 18
+  a18_goto: goto(url: "https://greenbanan33.github.io/Automatizacion-Prueba/") { status }
+  a18_click: click(selector: "iframe, a, ins") { selector time x y }
+
+  # Ejecución 19
+  a19_goto: goto(url: "https://greenbanan33.github.io/Automatizacion-Prueba/") { status }
+  a19_click: click(selector: "iframe, a, ins") { selector time x y }
+
+  # Ejecución 20
+  a20_goto: goto(url: "https://greenbanan33.github.io/Automatizacion-Prueba/") { status }
+  a20_click: click(selector: "iframe, a, ins") { selector time x y }
+
+  # Ejecución 21
+  a21_goto: goto(url: "https://greenbanan33.github.io/Automatizacion-Prueba/") { status }
+  a21_click: click(selector: "iframe, a, ins") { selector time x y }
+
+  # Ejecución 22
+  a22_goto: goto(url: "https://greenbanan33.github.io/Automatizacion-Prueba/") { status }
+  a22_click: click(selector: "iframe, a, ins") { selector time x y }
+
+  # Ejecución 23
+  a23_goto: goto(url: "https://greenbanan33.github.io/Automatizacion-Prueba/") { status }
+  a23_click: click(selector: "iframe, a, ins") { selector time x y }
+
+  # Ejecución 24
+  a24_goto: goto(url: "https://greenbanan33.github.io/Automatizacion-Prueba/") { status }
+  a24_click: click(selector: "iframe, a, ins") { selector time x y }
+
+  # Ejecución 25
+  a25_goto: goto(url: "https://greenbanan33.github.io/Automatizacion-Prueba/") { status }
+  a25_click: click(selector: "iframe, a, ins") { selector time x y }
+
+  # Ejecución 26
+  a26_goto: goto(url: "https://greenbanan33.github.io/Automatizacion-Prueba/") { status }
+  a26_click: click(selector: "iframe, a, ins") { selector time x y }
+
+  # Ejecución 27
+  a27_goto: goto(url: "https://greenbanan33.github.io/Automatizacion-Prueba/") { status }
+  a27_click: click(selector: "iframe, a, ins") { selector time x y }
+
+  # Ejecución 28
+  a28_goto: goto(url: "https://greenbanan33.github.io/Automatizacion-Prueba/") { status }
+  a28_click: click(selector: "iframe, a, ins") { selector time x y }
+
+  # Ejecución 29
+  a29_goto: goto(url: "https://greenbanan33.github.io/Automatizacion-Prueba/") { status }
+  a29_click: click(selector: "iframe, a, ins") { selector time x y }
+
+  # Ejecución 30
+  a30_goto: goto(url: "https://greenbanan33.github.io/Automatizacion-Prueba/") { status }
+  a30_click: click(selector: "iframe, a, ins") { selector time x y }
+
+  # Ejecución 31
+  a31_goto: goto(url: "https://greenbanan33.github.io/Automatizacion-Prueba/") { status }
+  a31_click: click(selector: "iframe, a, ins") { selector time x y }
+
+  # Ejecución 32
+  a32_goto: goto(url: "https://greenbanan33.github.io/Automatizacion-Prueba/") { status }
+  a32_click: click(selector: "iframe, a, ins") { selector time x y }
+
+  # Ejecución 33
+  a33_goto: goto(url: "https://greenbanan33.github.io/Automatizacion-Prueba/") { status }
+  a33_click: click(selector: "iframe, a, ins") { selector time x y }
+
+  # Ejecución 34
+  a34_goto: goto(url: "https://greenbanan33.github.io/Automatizacion-Prueba/") { status }
+  a34_click: click(selector: "iframe, a, ins") { selector time x y }
+
+  # Ejecución 35
+  a35_goto: goto(url: "https://greenbanan33.github.io/Automatizacion-Prueba/") { status }
+  a35_click: click(selector: "iframe, a, ins") { selector time x y }
+
+  # Ejecución 36
+  a36_goto: goto(url: "https://greenbanan33.github.io/Automatizacion-Prueba/") { status }
+  a36_click: click(selector: "iframe, a, ins") { selector time x y }
+
+  # Ejecución 37
+  a37_goto: goto(url: "https://greenbanan33.github.io/Automatizacion-Prueba/") { status }
+  a37_click: click(selector: "iframe, a, ins") { selector time x y }
+
+  # Ejecución 38
+  a38_goto: goto(url: "https://greenbanan33.github.io/Automatizacion-Prueba/") { status }
+  a38_click: click(selector: "iframe, a, ins") { selector time x y }
+
+  # Ejecución 39
+  a39_goto: goto(url: "https://greenbanan33.github.io/Automatizacion-Prueba/") { status }
+  a39_click: click(selector: "iframe, a, ins") { selector time x y }
+
+  # Ejecución 40
+  a40_goto: goto(url: "https://greenbanan33.github.io/Automatizacion-Prueba/") { status }
+  a40_click: click(selector: "iframe, a, ins") { selector time x y }
+
+  # Ejecución 41
+  a41_goto: goto(url: "https://greenbanan33.github.io/Automatizacion-Prueba/") { status }
+  a41_click: click(selector: "iframe, a, ins") { selector time x y }
+
+  # Ejecución 42
+  a42_goto: goto(url: "https://greenbanan33.github.io/Automatizacion-Prueba/") { status }
+  a42_click: click(selector: "iframe, a, ins") { selector time x y }
+
+  # Ejecución 43
+  a43_goto: goto(url: "https://greenbanan33.github.io/Automatizacion-Prueba/") { status }
+  a43_click: click(selector: "iframe, a, ins") { selector time x y }
+
+  # Ejecución 44
+  a44_goto: goto(url: "https://greenbanan33.github.io/Automatizacion-Prueba/") { status }
+  a44_click: click(selector: "iframe, a, ins") { selector time x y }
+
+  # Ejecución 45
+  a45_goto: goto(url: "https://greenbanan33.github.io/Automatizacion-Prueba/") { status }
+  a45_click: click(selector: "iframe, a, ins") { selector time x y }
+
+  # Ejecución 46
+  a46_goto: goto(url: "https://greenbanan33.github.io/Automatizacion-Prueba/") { status }
+  a46_click: click(selector: "iframe, a, ins") { selector time x y }
+
+  # Ejecución 47
+  a47_goto: goto(url: "https://greenbanan33.github.io/Automatizacion-Prueba/") { status }
+  a47_click: click(selector: "iframe, a, ins") { selector time x y }
+
+  # Ejecución 48
+  a48_goto: goto(url: "https://greenbanan33.github.io/Automatizacion-Prueba/") { status }
+  a48_click: click(selector: "iframe, a, ins") { selector time x y }
+
+  # Ejecución 49
+  a49_goto: goto(url: "https://greenbanan33.github.io/Automatizacion-Prueba/") { status }
+  a49_click: click(selector: "iframe, a, ins") { selector time x y }
+
+  # Ejecución 50
+  a50_goto: goto(url: "https://greenbanan33.github.io/Automatizacion-Prueba/") { status }
+  a50_click: click(selector: "iframe, a, ins") { selector time x y }
+}
